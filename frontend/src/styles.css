@@ -1,0 +1,180 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cyber: var(--cyber);
+  --color-cyber-glow: var(--cyber-glow);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-safe: var(--safe);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Sentinel AI — deep cyber dark theme */
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.96 0.01 220);
+  --card: oklch(0.20 0.025 250);
+  --card-foreground: oklch(0.96 0.01 220);
+  --popover: oklch(0.18 0.025 250);
+  --popover-foreground: oklch(0.96 0.01 220);
+  --primary: oklch(0.78 0.18 195);
+  --primary-foreground: oklch(0.14 0.03 250);
+  --secondary: oklch(0.26 0.03 255);
+  --secondary-foreground: oklch(0.96 0.01 220);
+  --muted: oklch(0.24 0.025 255);
+  --muted-foreground: oklch(0.68 0.02 240);
+  --accent: oklch(0.65 0.22 295);
+  --accent-foreground: oklch(0.98 0.01 220);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.98 0.01 220);
+  --border: oklch(0.30 0.03 250 / 60%);
+  --input: oklch(0.26 0.03 255);
+  --ring: oklch(0.78 0.18 195);
+
+  --cyber: oklch(0.78 0.18 195);
+  --cyber-glow: oklch(0.85 0.20 195);
+  --danger: oklch(0.68 0.26 22);
+  --warning: oklch(0.82 0.18 75);
+  --safe: oklch(0.75 0.20 155);
+
+  --gradient-cyber: linear-gradient(135deg, oklch(0.78 0.18 195), oklch(0.65 0.22 295));
+  --gradient-danger: linear-gradient(135deg, oklch(0.68 0.26 22), oklch(0.65 0.22 320));
+  --gradient-hero: radial-gradient(ellipse at top, oklch(0.30 0.10 240) 0%, oklch(0.16 0.02 250) 60%);
+  --shadow-glow: 0 0 40px oklch(0.78 0.18 195 / 0.35), 0 0 80px oklch(0.65 0.22 295 / 0.15);
+  --shadow-card: 0 1px 0 oklch(1 0 0 / 0.04) inset, 0 20px 60px -20px oklch(0 0 0 / 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.30 0.12 240 / 0.35), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 20%, oklch(0.40 0.18 295 / 0.18), transparent 70%),
+      linear-gradient(to bottom, var(--background), var(--background));
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .font-mono { font-family: var(--font-mono); }
+  .text-cyber { color: var(--cyber); }
+  .text-danger { color: var(--danger); }
+  .text-warning { color: var(--warning); }
+  .text-safe { color: var(--safe); }
+  .bg-cyber { background: var(--cyber); }
+  .bg-gradient-cyber { background: var(--gradient-cyber); }
+  .bg-gradient-danger { background: var(--gradient-danger); }
+  .bg-gradient-hero { background: var(--gradient-hero); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .border-cyber { border-color: var(--cyber); }
+
+  .glow-card {
+    position: relative;
+    background: linear-gradient(180deg, oklch(0.22 0.03 250 / 0.8), oklch(0.18 0.025 250 / 0.8));
+    border: 1px solid oklch(0.78 0.18 195 / 0.15);
+    backdrop-filter: blur(12px);
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.05) inset,
+      0 0 0 1px oklch(0.78 0.18 195 / 0.05),
+      0 20px 60px -20px oklch(0 0 0 / 0.7);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .glow-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, oklch(0.78 0.18 195 / 0.4), transparent 50%, oklch(0.65 0.22 295 / 0.3));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .glow-card:hover {
+    border-color: oklch(0.78 0.18 195 / 0.4);
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.08) inset,
+      0 0 30px oklch(0.78 0.18 195 / 0.15),
+      0 20px 60px -20px oklch(0 0 0 / 0.7);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(0.78 0.18 195 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.78 0.18 195 / 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .scan-line {
+    background: linear-gradient(90deg, transparent, var(--cyber), transparent);
+    animation: scan 2.5s linear infinite;
+  }
+  @keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .pulse-dot::before {
+    content: "";
+    position: absolute; inset: -4px;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.4;
+    animation: pulse-ring 2s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px oklch(0.78 0.18 195 / 0.5);
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out backwards;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
