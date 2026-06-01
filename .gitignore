@@ -35,6 +35,9 @@ node_modules/
 dist/
 build/
 node_modules/
+<<<<<<< HEAD
 .env
 *.env
 backend/.env
+=======
+>>>>>>> ef8bcde1cbe0acc0ce204e2edf12c4282c8e0ae7

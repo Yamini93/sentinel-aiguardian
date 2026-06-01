@@ -20,7 +20,11 @@ export async function generateAnalysis(
 
   const response =
     await fetch(
+<<<<<<< HEAD
       "https://sox-smart-films-const.trycloudflare.com/analyze",
+=======
+      "https://bacon-avon-feb-badly.trycloudflare.com/analyze",
+>>>>>>> ef8bcde1cbe0acc0ce204e2edf12c4282c8e0ae7
       {
         method:"POST",
         body:formData
