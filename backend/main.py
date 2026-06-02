@@ -124,7 +124,23 @@ async def analyze(file: UploadFile = File(...)):
 
             # Remote access
             "remote access":35,
-            "screen sharing":35
+            "screen sharing":35,
+
+            # Legal intimidation
+            "investigator":35,
+            "criminal complaint":40,
+            "warrant":40,
+            "arrest":40,
+            "legal":25,
+            "authorities":25,
+
+            # Financial coercion
+            "checking information":25,
+            "checking account":25,
+
+            # Urgency
+            "two hours":25,
+            "contact me back":15,
         }
 
         detected = []
@@ -162,7 +178,10 @@ async def analyze(file: UploadFile = File(...)):
             or "government" in transcript_lower
             or "finance minister" in transcript_lower
             or "nirmala" in transcript_lower
-        ) else 0.2
+            or "investigator" in transcript_lower
+            or "authorities" in transcript_lower
+            or "criminal complaint" in transcript_lower
+        )else 0.2
 
 
         urgency_score = 0.9 if (
@@ -171,8 +190,9 @@ async def analyze(file: UploadFile = File(...)):
             or "24 hours" in transcript_lower
             or "failure to comply" in transcript_lower
             or "blocked" in transcript_lower
+            or "two hours" in transcript_lower
+            or "contact me back" in transcript_lower
         ) else 0.2
-
 
         credential_score = 0.9 if (
             "otp" in transcript_lower
@@ -224,6 +244,19 @@ async def analyze(file: UploadFile = File(...)):
         # -------------------------
 
         timeline = []
+
+        if (
+            "warrant" in transcript_lower
+            or "arrest" in transcript_lower
+            or "criminal complaint" in transcript_lower
+        ):
+            timeline.append({
+                "t":"00:08",
+                "title":"Legal Intimidation",
+                "detail":"Detected arrest or legal threat language",
+                "severity":"high"
+
+            })
 
         if authority_score > 0.5:
             timeline.append({
@@ -318,6 +351,14 @@ Indicators:
 
                 "deepfake_suspicion":{
                     "score":deepfake_score
+                },
+
+                "legal_intimidation":{
+                    "score": 0.9 if (
+                        "warrant" in transcript_lower
+                        or "arrest" in transcript_lower
+                        or "criminal complaint" in transcript_lower
+                    ) else 0.2
                 }
             }
         }
