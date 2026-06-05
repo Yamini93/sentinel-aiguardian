@@ -20,7 +20,7 @@ export async function generateAnalysis(
 
   const response =
     await fetch(
-      "https://persistent-helmet-touch-methodology.trycloudflare.com/analyze",
+      "https://lens-cook-brad-pleased.trycloudflare.com/analyze",
       {
         method:"POST",
         body:formData
